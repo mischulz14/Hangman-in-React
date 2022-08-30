@@ -1,31 +1,21 @@
-
 import "./RandomWord.css";
 
 export default function RandomWord(props) {
-
-    console.log(props.generatedWordLetters)
-    console.log(props.generatedWord);
+  console.log(props.generatedWordLetters);
+  console.log(props.generatedWord);
 
   return (
     <div>
       <ul className="generated-word">
-        
-        {props.generatedWordLetters.map((letter, index) => 
-          {
-          
-            return (
-              <li
-                key={index}
-                className={letter.matched === true ? "appear" : ""}
-              >
-                <div
-                  className={letter.matched === true ? "appear" : "not-shown"}
-                >
-                  {letter.letter}
-                </div>
-              </li>
-            );}
-        )}
+        {props.generatedWordLetters.map((letter, index) => {
+          return (
+            <li key={index} className={letter.matched === true ? "appear" : ""}>
+              <div className={letter.matched === true ? "appear" : "not-shown"}>
+                {letter.letter}
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

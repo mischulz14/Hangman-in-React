@@ -1,8 +1,11 @@
+import "./Hangman.css";
 
-import "./Hangman.css"
-
-export default function Hangman({ falseTries, onReset, numberInList , foundWord}) {
-
+export default function Hangman({
+  falseTries,
+  onReset,
+  numberInList,
+  foundWord,
+}) {
   return (
     <>
       <div className="hangman">
@@ -22,7 +25,7 @@ export default function Hangman({ falseTries, onReset, numberInList , foundWord}
           <>
             <div className="game-over">
               <span>Oh no...</span>
-              <button onClick={onReset}>Try again?</button>
+              <button onClick={onReset}>Next Word?</button>
             </div>
           </>
         )}
@@ -37,4 +40,5 @@ export default function Hangman({ falseTries, onReset, numberInList , foundWord}
         )}
       </div>
     </>
-  )}
+  );
+}

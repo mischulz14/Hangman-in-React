@@ -9,14 +9,29 @@ import Score from "./components/Score";
 import CompletedGame from "./components/CompletedGame";
 import AudioContainer from "./components/AudioContainer";
 
-document.title = "Cozy Hangman"
-
-let counter = 0;
+document.title = "Cozy Hangman";
 
 function App() {
-  const randomWordsList = ["comfort", "calm", "relax", "coffee", "cozy", "cuddle", "easygoing", "rain"];
+  const randomWordsList = [
+    "comfort",
+    "calm",
+    "relax",
+    "coffee",
+    "cozy",
+    "cuddle",
+    "easygoing",
+    "rain",
+  ];
+
+  const [counter, setCounter] = useState(0);
 
   const [generatedWord, setGeneratedWord] = useState(randomWordsList[counter]);
+
+  const [generatedWordLetters, setGeneratedWordLetters] = useState(
+    generatedWord.split("").map((letter) => {
+      return { letter: letter.toUpperCase(), matched: false };
+    })
+  );
 
   const [resetedGame, setResetedGame] = useState(false);
 
@@ -29,12 +44,6 @@ function App() {
   const [chosenLetterByUser, setChosenLetterByUser] = useState("");
 
   const [completedGame, setCompletedGame] = useState(false);
-
-  const [generatedWordLetters, setGeneratedWordLetters] = useState(
-    randomWordsList[0].split("").map((letter) => {
-      return { letter: letter.toUpperCase(), matched: false };
-    })
-  );
 
   const [falseTries, setFalseTries] = useState(0);
 
@@ -57,6 +66,7 @@ function App() {
    */
   function choseLetterAndCheckForMatch(letter) {
     if (falseTries === 6) return;
+    if (foundWord) return;
 
     const chosenLetter = choseLetter(letter);
 
@@ -103,17 +113,18 @@ function App() {
    * letters to the letters of the word at the index of the counter, and setting the false tries to 0
    */
   function resetGame() {
-    counter++;
     if (counter === randomWordsList.length) {
       setCompletedGame(true);
     }
     setResetedGame((prev) => (prev === true ? false : null));
     setFoundWord((prev) => (prev === true ? false : null));
 
-    setGeneratedWord(randomWordsList[counter]);
+    setCounter(counter + 1);
+
+    setGeneratedWord(randomWordsList[counter + 1]);
 
     setGeneratedWordLetters(
-      randomWordsList[counter].split("").map((letter) => {
+      randomWordsList[counter + 1].split("").map((letter) => {
         return { letter: letter.toUpperCase(), matched: false };
       })
     );

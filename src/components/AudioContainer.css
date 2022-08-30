@@ -12,7 +12,7 @@
 .audio-container p {
   animation: hover 3s infinite;
   padding-right: 4rem;
-  margin-top: -1.5rem;
+  margin-top: -1rem;
 }
 
 audio::-webkit-media-controls-timeline-container,
