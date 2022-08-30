@@ -10,6 +10,7 @@ import CompletedGame from "./components/CompletedGame";
 import AudioContainer from "./components/AudioContainer";
 
 document.title = "Cozy Hangman";
+let count = 0;
 
 function App() {
   const randomWordsList = [
@@ -23,9 +24,7 @@ function App() {
     "rain",
   ];
 
-  const [counter, setCounter] = useState(0);
-
-  const [generatedWord, setGeneratedWord] = useState(randomWordsList[counter]);
+  const [generatedWord, setGeneratedWord] = useState(randomWordsList[0]);
 
   const [generatedWordLetters, setGeneratedWordLetters] = useState(
     generatedWord.split("").map((letter) => {
@@ -113,18 +112,24 @@ function App() {
    * letters to the letters of the word at the index of the counter, and setting the false tries to 0
    */
   function resetGame() {
-    if (counter === randomWordsList.length) {
+    count++
+
+    if (count === randomWordsList.length) {
       setCompletedGame(true);
     }
+
+    if (randomWordsList[count] === undefined) return
+
+
     setResetedGame((prev) => (prev === true ? false : null));
     setFoundWord((prev) => (prev === true ? false : null));
 
-    setCounter(counter + 1);
+  
 
-    setGeneratedWord(randomWordsList[counter + 1]);
+    setGeneratedWord(randomWordsList[count]);
 
     setGeneratedWordLetters(
-      randomWordsList[counter + 1].split("").map((letter) => {
+      randomWordsList[count].split("").map((letter) => {
         return { letter: letter.toUpperCase(), matched: false };
       })
     );
