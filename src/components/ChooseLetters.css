@@ -1,0 +1,26 @@
+.choose {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem 2.8rem;
+  grid-template-columns: repeat(6, 1fr);
+  align-content: center;
+  justify-items: center;
+  font-weight: bold;
+}
+
+li {
+  width: 100%;
+  background-color: rgba(211, 211, 211, 0.553);
+  box-shadow: 1px 1px 10px 1px rgba(238, 155, 91, 0.503);
+  padding: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.choose li:hover {
+  transform: translateY(-2px);
+}
