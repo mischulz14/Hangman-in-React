@@ -100,7 +100,6 @@ function App() {
       <RandomWord
         generatedWordLetters={generatedWordLetters}
         generatedWord={generatedWord}
-        numberInList={numberInList}
       />
       <ChooseLetters onClick={choseLetterAndCheckForMatch} />
     </div>
