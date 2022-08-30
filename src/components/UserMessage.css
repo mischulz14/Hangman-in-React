@@ -9,7 +9,7 @@
 }
 
 .disappear {
-  animation: disappear ease-out 12s;
+  animation: disappear ease-out 3s;
 }
 
 @keyframes disappear {
