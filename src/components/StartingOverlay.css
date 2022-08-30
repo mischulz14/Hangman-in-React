@@ -3,6 +3,7 @@
 .starting-overlay {
   display: flex;
   align-items: center;
+  text-align: center;
   flex-direction: column;
   position: absolute;
   left: 0;
@@ -12,6 +13,7 @@
   background-color: rgba(0, 0, 0, 0.637);
   color: white;
   font-family: DynaPuff;
+  z-index: 1000;
 }
 
 h1 {

@@ -39,3 +39,14 @@
     transform: scale(1);
   }
 }
+
+@media (max-width: 600px){
+    .generated-word {
+        flex-wrap: wrap;
+    }
+
+    .generated-word li {
+        width: 1rem;
+        height: 1rem;
+    }
+}

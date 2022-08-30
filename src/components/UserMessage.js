@@ -1,10 +1,10 @@
 import "./UserMessage.css"
 
-export default function UserMessage(){
+export default function UserMessage({startedGame}){
 
     return(
-        <div className="user-message">
-            If you can see 6 stars the game is over ...
+        <div className={`user-message ${startedGame ? "disappear" : ""}`}>
+            If you can see 6 stars you lost ...
         </div>
     )
 }

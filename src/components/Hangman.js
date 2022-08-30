@@ -1,8 +1,6 @@
 import "./Hangman.css"
 
 export default function Hangman({ falseTries, onReset, numberInList , foundWord}) {
-    
-  console.log(numberInList);
 
   return (
     <>
@@ -32,7 +30,7 @@ export default function Hangman({ falseTries, onReset, numberInList , foundWord}
           <>
             <div className="game-over">
               <span>You did it!</span>
-              <button onClick={onReset}>Try again?</button>
+              <button onClick={onReset}>Another word?</button>
             </div>
           </>
         )}

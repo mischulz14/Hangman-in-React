@@ -4,7 +4,7 @@
     justify-content: flex-end;
     align-items: center; 
     text-align: center;
-    margin: 0 auto;
+    margin-bottom: -5rem;
     height: 20rem;
     width: 5rem;
     position: relative;
@@ -22,25 +22,26 @@
 }
 
 .star-1 {
-    left: -6rem;
-    top: 6rem;
+    left: -3rem;
+    top: 1rem;
 }
 
 .star-2 {
-    top: 2rem;
+    top: 4rem;
+    left: 0rem;
     width: 0.5rem;
     height: 0.5rem;
 }
 
 .star-3 {
-    right: -10rem;
-    top: 6rem;
+    right: -6rem;
+    top: 1rem;
     width: 0.4rem;
     height: 0.4rem;
 }
 
 .star-4{
-    top: 8rem;
+    top: 2rem;
     left: -2rem;
      width: 0.4rem;
     height: 0.4rem;
@@ -48,14 +49,14 @@
 
 .star-5 {
     left: 2rem;
-    bottom: 13rem;
+    bottom: 10rem;
      width: 0.4rem;
     height: 0.4rem;
 }
 
 .star-6 {
-    right: -6rem;
-    top: 8rem;
+    right: -2rem;
+    top: 3rem;
      width: 0.5rem;
     height: 0.5rem;
 }
@@ -63,6 +64,7 @@
 .game-over {
     animation: appear 1.5s;
     font-size: 1.4rem;
+    margin-bottom: 3rem;
 }
 
 .game-over button {

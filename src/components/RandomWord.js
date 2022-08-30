@@ -8,6 +8,7 @@ export default function RandomWord(props) {
   return (
     <div>
       <ul className="generated-word">
+        
         {props.generatedWordLetters.map((letter, index) => 
           {
           

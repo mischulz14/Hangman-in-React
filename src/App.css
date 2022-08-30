@@ -19,3 +19,11 @@ body {
   position: relative;
   font-family: DynaPuff;
 }
+
+.footer {
+  color: rgba(255, 255, 255, 0.307);
+  font-size: 0.8rem;
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+}

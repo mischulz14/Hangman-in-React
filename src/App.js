@@ -1,16 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ChooseLetters from "./components/ChooseLetters";
 import "./App.css";
 import Hangman from "./components/Hangman";
 import RandomWord from "./components/RandomWord";
 import StartingOverlay from "./components/StartingOverlay";
 import UserMessage from "./components/UserMessage";
+import Score from "./components/Score";
+import CompletedGame from "./components/CompletedGame";
+import AudioContainer from "./components/AudioContainer";
+
+document.title = "Cozy Hangman"
+
+let counter = 0;
 
 function App() {
-  const [numberInList, setNumberInList] = useState(0);
-  console.log(numberInList);
-  const randomWordsList = ["comfort", "calm", "relax", "coffee", "cozy"];
-  const [generatedWord, setGeneratedWord] = useState(randomWordsList[0]);
+  const randomWordsList = ["comfort", "calm", "relax", "coffee", "cozy", "cuddle", "easygoing", "rain"];
+
+  const [generatedWord, setGeneratedWord] = useState(randomWordsList[counter]);
 
   const [resetedGame, setResetedGame] = useState(false);
 
@@ -22,19 +28,33 @@ function App() {
 
   const [chosenLetterByUser, setChosenLetterByUser] = useState("");
 
+  const [completedGame, setCompletedGame] = useState(false);
+
   const [generatedWordLetters, setGeneratedWordLetters] = useState(
-    randomWordsList[numberInList].split("").map((letter) => {
+    randomWordsList[0].split("").map((letter) => {
       return { letter: letter.toUpperCase(), matched: false };
     })
   );
 
   const [falseTries, setFalseTries] = useState(0);
 
+  /**
+   * The function `choseLetter` takes a letter as an argument and sets the chosen letter by the user to
+   * the letter that was passed in
+   * @param letter - the letter that the user chose
+   * @returns The letter that was chosen by the user.
+   */
   function choseLetter(letter) {
     setChosenLetterByUser(letter);
     return letter;
   }
 
+  /**
+   * If the user has not lost the game, then choose a letter, check if it's a match, and if it is, mark
+   * it as matched
+   * @param letter - the letter that the user chose
+   * @returns the letter that was chosen.
+   */
   function choseLetterAndCheckForMatch(letter) {
     if (falseTries === 6) return;
 
@@ -51,57 +71,76 @@ function App() {
     foundAllLettersInTime();
   }
 
+  /**
+   * If the chosen letter is not in the generated word, add one to the false tries
+   * @param chosenLetter - the letter that the user chose
+   */
   function foundNoMatch(chosenLetter) {
     if (!generatedWord.toUpperCase().includes(chosenLetter.toUpperCase())) {
       setFalseTries((prev) => prev + 1);
     }
   }
 
+  /**
+   * If all the letters in the generated word have been matched, then set the foundWord state to true
+   * and increment the score by 1
+   */
   function foundAllLettersInTime() {
     const matchedLettersArray = generatedWordLetters.filter(
       (letter) => letter.matched
     );
 
     if (matchedLettersArray.length === generatedWordLetters.length) {
-      console.log("you did it!");
       setFoundWord((prev) => !prev);
+      setScore((prev) => prev + 1);
     }
   }
 
+  /**
+   * The function resets the game by incrementing the counter, checking if the counter is equal to the
+   * length of the array of words, setting the found word to false, setting the reseted game to true,
+   * setting the generated word to the word at the index of the counter, setting the generated word
+   * letters to the letters of the word at the index of the counter, and setting the false tries to 0
+   */
   function resetGame() {
+    counter++;
+    if (counter === randomWordsList.length) {
+      setCompletedGame(true);
+    }
     setResetedGame((prev) => (prev === true ? false : null));
     setFoundWord((prev) => (prev === true ? false : null));
 
-    setNumberInList((prev) => prev + 1);
-
-    setGeneratedWord(randomWordsList[numberInList]);
+    setGeneratedWord(randomWordsList[counter]);
 
     setGeneratedWordLetters(
-      generatedWord.split("").map((letter) => {
+      randomWordsList[counter].split("").map((letter) => {
         return { letter: letter.toUpperCase(), matched: false };
       })
     );
-
-    console.log(generatedWordLetters);
 
     setFalseTries(0);
   }
 
   return (
     <div className="App">
-      <UserMessage />
+      <UserMessage startedGame={startedGame} />
+      {completedGame && <CompletedGame />}
+      <Score score={score} />
       {!startedGame && <StartingOverlay setStartedGame={setStartedGame} />}
       <Hangman
         falseTries={falseTries}
         onReset={resetGame}
         foundWord={foundWord}
-        numberInList={numberInList}
       />
       <RandomWord
         generatedWordLetters={generatedWordLetters}
         generatedWord={generatedWord}
       />
       <ChooseLetters onClick={choseLetterAndCheckForMatch} />
+      <AudioContainer />
+      <div className="footer">
+        Art © Tony Holz @https://dribbble.com/tonyholz
+      </div>
     </div>
   );
 }

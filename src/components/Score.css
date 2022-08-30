@@ -1,0 +1,24 @@
+.score {
+    color: white;
+    position: absolute;
+    right: 6rem;
+    top: 10rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid white ;
+    border-radius: 10px;
+}
+
+@media (max-width: 600px){
+    .score {
+        top: 8rem;
+        right: 2rem;
+    }
+}
+
+@media (max-width: 500px){
+    .score {
+        top: 1rem;
+        right: 1rem;
+    }
+}

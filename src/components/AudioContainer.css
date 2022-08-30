@@ -1,0 +1,59 @@
+.audio-container {
+  height: 3rem;
+  color: rgba(255, 255, 255, 0.855);
+  position: absolute;
+  left: 1rem;
+  top: 1.3rem;
+  text-align: center;
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.audio-container p {
+  animation: hover 3s infinite;
+  padding-right: 4rem;
+  margin-top: -1.5rem;
+}
+
+audio::-webkit-media-controls-timeline-container,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-volume-slider-container,
+audio::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button,
+audio::-webkit-media-controls-fullscreen-button,
+audio::-webkit-media-controls-rewind-button,
+audio::-webkit-media-controls-return-to-realtime-button,
+audio::-webkit-media-controls-toggle-closed-captions-button {
+  display: none;
+}
+
+audio {
+  width: 10rem;
+  color: aquamarine;
+  border-radius: 30px;
+  opacity: 0.4;
+  margin-top: -0.5rem;
+}
+
+audio::-webkit-media-controls-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 50%;
+}
+
+@keyframes hover {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
