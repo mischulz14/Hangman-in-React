@@ -1,3 +1,4 @@
+
 import "./RandomWord.css";
 
 export default function RandomWord(props) {

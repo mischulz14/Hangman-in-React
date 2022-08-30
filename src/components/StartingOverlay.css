@@ -1,5 +1,6 @@
 
 
+
 .starting-overlay {
   display: flex;
   align-items: center;
@@ -57,3 +58,5 @@ h1 {
     transform: translateY(-15px);
   }
 }
+
+

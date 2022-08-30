@@ -1,3 +1,4 @@
+
 import "./Hangman.css"
 
 export default function Hangman({ falseTries, onReset, numberInList , foundWord}) {
@@ -36,5 +37,4 @@ export default function Hangman({ falseTries, onReset, numberInList , foundWord}
         )}
       </div>
     </>
-  );
-}
+  )}

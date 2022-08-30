@@ -9,15 +9,15 @@
 }
 
 .disappear {
-    animation: disappear ease-out 12s ;
+  animation: disappear ease-out 12s;
 }
 
 @keyframes disappear {
-    from {
-        opacity: 1;
-    }
+  from {
+    opacity: 1;
+  }
 
-    to {
-        opacity: 0;
-    }
+  to {
+    opacity: 0;
+  }
 }
