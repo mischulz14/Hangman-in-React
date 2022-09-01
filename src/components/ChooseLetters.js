@@ -1,21 +1,27 @@
-import letters from "../data/Letters";
-import "./ChooseLetters.css"
+import './ChooseLetters.css';
+import letters from '../data/Letters';
 
-export default function ChooseLetters(props){
-
-    
-
-    return (
-      <>
+export default function ChooseLetters(props) {
+  return (
+    <>
       <div className="letters-container">
-
         <ul className="choose">
           {letters.map((letter, index) => {
-            return <li onClick={() => props.onClick(letter)} key={index}>{letter}</li>;
+            return (
+              <li
+                className="letter"
+                onClick={(event) => {
+                  props.onClick(letter);
+                  event.target.classList.add('matched');
+                }}
+                key={index}
+              >
+                {letter}
+              </li>
+            );
           })}
         </ul>
-        
-        </div>
-      </>
-    );
+      </div>
+    </>
+  );
 }

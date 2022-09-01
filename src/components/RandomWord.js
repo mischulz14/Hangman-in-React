@@ -1,8 +1,6 @@
-import "./RandomWord.css";
+import './RandomWord.css';
 
 export default function RandomWord(props) {
-  console.log(props.generatedWordLetters);
-  console.log(props.generatedWord);
 
   return (
     <div>

@@ -1,35 +1,36 @@
-import { useState } from "react";
-import ChooseLetters from "./components/ChooseLetters";
-import "./App.css";
-import Hangman from "./components/Hangman";
-import RandomWord from "./components/RandomWord";
-import StartingOverlay from "./components/StartingOverlay";
-import UserMessage from "./components/UserMessage";
-import Score from "./components/Score";
-import CompletedGame from "./components/CompletedGame";
-import AudioContainer from "./components/AudioContainer";
+import './App.css';
+import { useState } from 'react';
+import AudioContainer from './components/AudioContainer';
+import ChooseLetters from './components/ChooseLetters';
+import CompletedGame from './components/CompletedGame';
+import Hangman from './components/Hangman';
+import RandomWord from './components/RandomWord';
+import Score from './components/Score';
+import StartingOverlay from './components/StartingOverlay';
+import UserMessage from './components/UserMessage';
 
-document.title = "Cozy Hangman";
+document.title = 'Cozy Hangman';
 let count = 0;
+
 
 function App() {
   const randomWordsList = [
-    "comfort",
-    "calm",
-    "relax",
-    "coffee",
-    "cozy",
-    "cuddle",
-    "easygoing",
-    "rain",
+    'comfort',
+    'calm',
+    'relax',
+    'coffee',
+    'cozy',
+    'cuddle',
+    'easygoing',
+    'rain',
   ];
 
   const [generatedWord, setGeneratedWord] = useState(randomWordsList[0]);
 
   const [generatedWordLetters, setGeneratedWordLetters] = useState(
-    generatedWord.split("").map((letter) => {
+    generatedWord.split('').map((letter) => {
       return { letter: letter.toUpperCase(), matched: false };
-    })
+    }),
   );
 
   const [resetedGame, setResetedGame] = useState(false);
@@ -40,7 +41,7 @@ function App() {
 
   const [startedGame, setStartedGame] = useState(false);
 
-  const [chosenLetterByUser, setChosenLetterByUser] = useState("");
+  const [chosenLetterByUser, setChosenLetterByUser] = useState('');
 
   const [completedGame, setCompletedGame] = useState(false);
 
@@ -64,6 +65,7 @@ function App() {
    * @returns the letter that was chosen.
    */
   function choseLetterAndCheckForMatch(letter) {
+    setResetedGame(false);
     if (falseTries === 6) return;
     if (foundWord) return;
 
@@ -96,7 +98,7 @@ function App() {
    */
   function foundAllLettersInTime() {
     const matchedLettersArray = generatedWordLetters.filter(
-      (letter) => letter.matched
+      (letter) => letter.matched,
     );
 
     if (matchedLettersArray.length === generatedWordLetters.length) {
@@ -112,30 +114,38 @@ function App() {
    * letters to the letters of the word at the index of the counter, and setting the false tries to 0
    */
   function resetGame() {
-    count++
+    count++;
 
     if (count === randomWordsList.length) {
       setCompletedGame(true);
     }
 
-    if (randomWordsList[count] === undefined) return
+    if (randomWordsList[count] === undefined) return;
 
-
-    setResetedGame((prev) => (prev === true ? false : null));
+    setResetedGame(true);
     setFoundWord((prev) => (prev === true ? false : null));
-
-  
 
     setGeneratedWord(randomWordsList[count]);
 
     setGeneratedWordLetters(
-      randomWordsList[count].split("").map((letter) => {
+      randomWordsList[count].split('').map((letter) => {
         return { letter: letter.toUpperCase(), matched: false };
-      })
+      }),
     );
 
     setFalseTries(0);
+    resetLetters()
   }
+
+  function resetLetters() {
+    const letterList = document.querySelectorAll('.letter');
+
+    letterList.forEach((letter) => {
+        letter.classList.remove('matched');
+    });
+  }
+
+
 
   return (
     <div className="App">
@@ -152,7 +162,10 @@ function App() {
         generatedWordLetters={generatedWordLetters}
         generatedWord={generatedWord}
       />
-      <ChooseLetters onClick={choseLetterAndCheckForMatch} />
+      <ChooseLetters
+        onClick={choseLetterAndCheckForMatch}
+        resetedGame={resetedGame}
+      />
       <AudioContainer />
       <div className="footer">
         Art © Tony Holz @https://dribbble.com/tonyholz
